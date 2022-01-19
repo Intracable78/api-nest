@@ -7,8 +7,11 @@ import { RankEntity } from "./rank.entity";
 @Entity('users')
 export class UserEntity {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn('uuid', { name: 'id' })
     id: string;
+
+    @Column({ unique: true })
+    email: string;
 
     @Column()
     name: string;
