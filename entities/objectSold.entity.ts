@@ -6,7 +6,7 @@ import { UserEntity } from "./user.entity";
 export class ObjectSoldEntity {
 
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @Column()
     amount: number;

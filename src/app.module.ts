@@ -5,6 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { RankModule } from './rank/rank.module';
 import { Connection } from 'typeorm';
+import { CategoryModule } from './category/category/category.module';
+import { ObjectModule } from './object/object.module';
+import { AutionObjectModule } from './aution-object/aution-object.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -18,8 +21,11 @@ import { Connection } from 'typeorm';
       synchronize: true,
     }),
     UserModule,
-    RankModule,],
-  controllers: [AppController],
+    RankModule,
+    CategoryModule,
+    ObjectModule,
+    AutionObjectModule,],
+  controllers: [AppController,],
   providers: [AppService],
 })
 export class AppModule {

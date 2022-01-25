@@ -5,7 +5,7 @@ import { ObjectEntity } from "./object.entity";
 export class CategoryEntity {
 
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @Column()
     name: string;

@@ -8,13 +8,13 @@ import { UserEntity } from "./user.entity";
 export class ObjectEntity {
 
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @Column()
     name: string;
 
     @Column()
-    priceStart: string;
+    priceStart: number;
     @Column()
     dateEnd: Date;
 

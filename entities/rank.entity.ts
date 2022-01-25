@@ -5,7 +5,7 @@ import { UserEntity } from "./user.entity";
 export class RankEntity {
 
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @Column()
     name: string;

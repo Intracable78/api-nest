@@ -7,22 +7,12 @@ import { UserEntity } from "./user.entity";
 export class AuctionObjectEntity {
 
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @Column()
-    name: string;
-
+    action_price: string;
     @Column()
-    priceStart: string;
-    @Column()
-    dateEnd: Date;
-
-    @Column()
-    phone: number;
-    @Column()
-    address: string;
-    @Column()
-    country: string;
+    auction_date: Date;
 
     @ManyToOne(() => ObjectEntity, object => object.auctionsObjects)
     object: ObjectEntity;
