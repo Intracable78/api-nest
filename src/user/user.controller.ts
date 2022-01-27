@@ -6,7 +6,7 @@ import { UserService } from './user.service';
 
 @Controller('api/user')
 export class UserController {
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService) { }
 
     @Post('create')
     async createUser(@Body() createUserDto: CreateUserDto) {
@@ -28,7 +28,7 @@ export class UserController {
         return await this.userService.getUserById(+id);
     }
 
-    @Delete(':id')
+    @Delete('delete/:id')
     async deleteUserById(@Param('id') id: string) {
         return await this.userService.deleteUserById(+id);
     }

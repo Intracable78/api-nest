@@ -5,9 +5,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './user/user.module';
 import { RankModule } from './rank/rank.module';
 import { Connection } from 'typeorm';
-import { CategoryModule } from './category/category/category.module';
 import { ObjectModule } from './object/object.module';
 import { AutionObjectModule } from './aution-object/aution-object.module';
+import { CategoryModule } from './category/category.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
