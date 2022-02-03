@@ -18,13 +18,6 @@ export class ObjectEntity {
     @Column()
     dateEnd: Date;
 
-    @Column()
-    phone: number;
-    @Column()
-    address: string;
-    @Column()
-    country: string;
-
     @ManyToOne(() => UserEntity, user => user.objects)
     user: UserEntity;
     @ManyToOne(() => CategoryEntity, category => category.objects)

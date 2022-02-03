@@ -15,16 +15,6 @@ export class CreateObjectDto {
     dateEnd: Date;
 
     @IsNumberString()
-    @IsNotEmpty()
-    phone: number;
-
-    @IsString()
-    @IsNotEmpty()
-    address: string;
-    @IsString()
-    @IsNotEmpty()
-    country: string;
-    @IsNumberString()
     @IsOptional()
     categoryId: number;
     @IsNumberString()

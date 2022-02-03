@@ -24,7 +24,7 @@ export class UserEntity {
     birthDate: string;
 
     @Column()
-    phone: number;
+    phone: string;
     @Column()
     address: string;
     @Column()
