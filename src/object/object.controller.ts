@@ -22,7 +22,7 @@ export class ObjectController {
     }
 
     @Get(':id')
-    getObjectById(id: string) {
+    getObjectById(@Param('id') id: string) {
         return this.objectService.getObjectById(id);
     }
     @Patch('update/:id')

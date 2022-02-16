@@ -20,6 +20,7 @@ export class ObjectService {
     }
 
     async getObjectById(id: string) {
+        console.log(id);
         return await this.objectRepository.findOne(id);
     }
 
