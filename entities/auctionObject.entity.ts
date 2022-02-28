@@ -1,5 +1,4 @@
-
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { ObjectEntity } from "./object.entity";
 import { UserEntity } from "./user.entity";
 
@@ -10,17 +9,15 @@ export class AuctionObjectEntity {
     id: number;
 
     @Column()
-    action_price: string;
+    auction_price: number;
     @Column()
     auction_date: Date;
 
-    @ManyToOne(() => ObjectEntity, object => object.auctionsObjects)
+    @ManyToOne(() => ObjectEntity, object => object.auctionObjects)
     object: ObjectEntity;
 
     @ManyToOne(() => UserEntity, user => user.auctionsObjects)
     user: UserEntity;;
-
-    //id_user
 
 
 }

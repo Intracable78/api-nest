@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { AuctionObjectEntity } from "./auctionObject.entity";
 import { CategoryEntity } from "./category.entity";
 import { StateEntity } from "./state.entity";
@@ -26,7 +26,9 @@ export class ObjectEntity {
     @ManyToOne(() => StateEntity, state => state.objects)
     state: StateEntity;
 
-    @OneToMany(() => AuctionObjectEntity, auctionsObjects => auctionsObjects.object)
-    auctionsObjects: AuctionObjectEntity[]
+    @OneToMany(() => AuctionObjectEntity, auctionObject => auctionObject.object)
+
+    auctionObjects: AuctionObjectEntity[];
+
 
 }

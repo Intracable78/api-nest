@@ -35,5 +35,10 @@ export class ObjectController {
         return this.objectService.deleteObjectById(+id);
     }
 
+    @Get('user/:id')
+    getObjectByUserId(@Param('id') id: string) {
+        return this.objectService.getObjectByUserId(id);
+    }
+
 
 }

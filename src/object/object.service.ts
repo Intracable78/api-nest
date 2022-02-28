@@ -3,7 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateObjectDto } from 'dto/createObject.dto';
 import { UpdateObjectDto } from 'dto/updateObject.dto';
 import { ObjectEntity } from 'entities/object.entity';
-import { Repository } from 'typeorm';
+import { UserEntity } from 'entities/user.entity';
+import { LessThan, MoreThan, Repository } from 'typeorm';
 
 @Injectable()
 export class ObjectService {
@@ -16,12 +17,31 @@ export class ObjectService {
     }
 
     async getObject() {
-        return await this.objectRepository.find();
+        return await this.objectRepository.find({
+            relations: ['auctionObjects'],
+            order: {
+                id: 'DESC'
+            }
+        });
+    }
+    async getObjectByUserId(userId: string) {
+        return await this.objectRepository.find({
+            relations: ['auctionObjects'],
+            where: { user: userId, dateEnd: MoreThan(new Date()) }
+        })
     }
 
     async getObjectById(id: string) {
-        console.log(id);
-        return await this.objectRepository.findOne(id);
+        return await this.objectRepository.findOne(
+            {
+                where: { id: id },
+                relations: ['auctionObjects'],
+                order: {
+                    id: 'ASC'
+                }
+
+            }
+        );
     }
 
     async updateObject(id: number, updateObjectDto: UpdateObjectDto): Promise<ObjectEntity> {
