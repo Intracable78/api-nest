@@ -1,19 +1,23 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BeforeInsert, Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { AuctionObjectEntity } from "./auctionObject.entity";
 import { ObjectEntity } from "./object.entity";
 import { ObjectSoldEntity } from "./objectSold.entity";
 import { RankEntity } from "./rank.entity";
+import * as bcrypt from 'bcrypt';
 
 @Entity('users')
 export class UserEntity {
 
     @PrimaryGeneratedColumn()
     id: string;
-    @Column()
-    firebaseId: string;
+    //@Column()
+    //firebaseId: string;
 
     @Column({ unique: true })
     email: string;
+    @BeforeInsert() async hashPassword() {
+        this.password = await bcrypt.hash(this.password, 10);
+    }
 
     @Column()
     name: string;
@@ -31,6 +35,10 @@ export class UserEntity {
     country: string;
     @CreateDateColumn()
     created_at: Date;
+    // @Column()
+    //token: string;
+    @Column()
+    password: string;
 
     @ManyToOne(() => RankEntity, rank => rank.users)
     rank: RankEntity;

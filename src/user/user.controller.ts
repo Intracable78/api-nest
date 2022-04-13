@@ -13,6 +13,12 @@ export class UserController {
         await this.userService.create(createUserDto);
     }
 
+    /* @Put('setToken/:id/:idToken')
+     async setToken(@Param('idToken') tokenId: string, @Param('id') userId: number) {
+         console.log('token' + tokenId);
+         await this.userService.setToken(tokenId, userId);
+     } */
+
     @Get()
     getUsers() {
         return this.userService.getUsers();

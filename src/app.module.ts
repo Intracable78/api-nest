@@ -8,6 +8,7 @@ import { Connection } from 'typeorm';
 import { ObjectModule } from './object/object.module';
 import { AutionObjectModule } from './aution-object/aution-object.module';
 import { CategoryModule } from './category/category.module';
+import { AuthModule } from './auth/auth.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -24,7 +25,8 @@ import { CategoryModule } from './category/category.module';
     RankModule,
     CategoryModule,
     ObjectModule,
-    AutionObjectModule,],
+    AutionObjectModule,
+    AuthModule,],
   controllers: [AppController,],
   providers: [AppService],
 })
