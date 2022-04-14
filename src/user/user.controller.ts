@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, Put, Req, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateUserDto } from 'dto/createUser.dto';
 import { UpdateUserDto } from 'dto/updateuser.dto';
 import { ObjectEntity } from 'entities/object.entity';
@@ -20,7 +21,9 @@ export class UserController {
      } */
 
     @Get()
-    getUsers() {
+    @UseGuards(AuthGuard('jwt'))
+    getUsers(@Req() req: any) {
+        console.log(req)
         return this.userService.getUsers();
     }
 

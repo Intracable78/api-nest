@@ -66,7 +66,7 @@ export class UserService {
     } */
 
     async findByLogin({ email, password }: LoginUserDto): Promise<UserDto> {
-        const user = await this.userRepository.findOne({ where: { email } });
+        const user = await this.userRepository.findOne({ where: { email }, relations: ['rank'] });
 
         if (!user) {
             throw new HttpException('User not found', HttpStatus.UNAUTHORIZED);
@@ -91,7 +91,8 @@ export class UserService {
 
     async findByPayload({ email }: any): Promise<UserDto> {
         return await this.findOne({
-            where: { email }
+            where: { email },
+            relations: ['rank'],
         });
     }
 

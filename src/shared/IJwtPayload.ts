@@ -1,1 +1,1 @@
-export interface JwtPayload { email: string; rank: string }
+export interface JwtPayload { email: string; }

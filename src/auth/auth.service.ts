@@ -36,20 +36,20 @@ export class AuthService {
         // generate and sign token    
         const token = this._createToken(user);
 
-        console.log(user)
+        // console.log(this.jwtService.decode(token.accessToken));
 
         return {
             email: user.email, rank: user.rank, ...token,
+
         };
     }
 
-    private _createToken({ email }: UserDto): any {
-        const user = { email };
+    private _createToken({ email, rank }: UserDto): any {
+        const user = { email, rank };
         const accessToken = this.jwtService.sign(user);
-        return {
-            expiresIn: process.env.EXPIRESIN,
-            accessToken,
-        };
+        // const decodedToken = this.jwtService.decode(accessToken)
+        //  console.log(decodedToken)
+        return { accessToken };
     }
 
     async validateUser(payload: JwtPayload): Promise<UserDto> {

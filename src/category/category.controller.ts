@@ -1,6 +1,8 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Req, UseGuards } from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateCategoryDto } from 'dto/createCategory.dto';
 import { UpdateUserDto } from 'dto/updateUser.dto';
+import { UserRole } from '../enum/user-role.enum';
 import { CategoryService } from './category.service';
 
 @Controller('api/category')
@@ -16,8 +18,13 @@ export class CategoryController {
     }
 
     @Get()
+    @UseGuards(AuthGuard('jwt'))
 
-    getAllGategories() {
+    getAllGategories(@Req() req: any) {
+        console.log(req.user)
+        if (req.user.rank.name === UserRole.ADMIN) {
+            console.log('user is admin')
+        }
         return this.categoryService.getAllCategories()
     }
 
