@@ -1,4 +1,5 @@
 import { IsDate, IsNotEmpty, IsNumberString, IsOptional, IsString } from "class-validator";
+import { UserEntity } from "../entities/user.entity";
 
 export class CreateObjectDto {
 
@@ -19,7 +20,7 @@ export class CreateObjectDto {
     categoryId: number;
     @IsNumberString()
     @IsNotEmpty()
-    userId: number;
+    user: UserEntity;
     @IsNumberString()
     @IsOptional()
     stateId: number;

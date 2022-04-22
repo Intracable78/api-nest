@@ -1,7 +1,8 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
 import { CreateAuctionObjectDto } from 'dto/createAuctionObject.dto';
 import { AutionObjectService } from './aution-object.service';
 import { updateAuctionObjectDto } from 'dto/updateAuctionObject.dto';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('api/auction-object')
 export class AutionObjectController {
@@ -10,6 +11,7 @@ export class AutionObjectController {
     }
 
     @Post('create')
+    @UseGuards(AuthGuard('jwt'))
     async createAuctionObject(@Body() createAuctionObjectDto: CreateAuctionObjectDto) {
         return await this.auctionObjectService.createAuctionObject(createAuctionObjectDto);
     }
@@ -20,15 +22,14 @@ export class AutionObjectController {
     }
 
     @Get()
-
     async getAllAuctionObject() {
         return await this.auctionObjectService.getAllAuctionObject();
     }
 
     @Patch(':id')
+    @UseGuards(AuthGuard('jwt'))
     async updateAuctionObject(@Param('id') id: number, @Body() updateAuctionPrice: updateAuctionObjectDto) {
-        console.log('ok')
-        return await this.auctionObjectService.updateAuctionObject(+id, updateAuctionPrice);
+        return await this.auctionObjectService.updateOrCreateAuctionObject(+id, updateAuctionPrice);
     }
 
 

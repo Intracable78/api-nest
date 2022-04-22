@@ -39,7 +39,7 @@ export class AuthService {
         // console.log(this.jwtService.decode(token.accessToken));
 
         return {
-            email: user.email, rank: user.rank, ...token,
+            email: user.email, id: user.id, rank: user.rank, ...token,
 
         };
     }

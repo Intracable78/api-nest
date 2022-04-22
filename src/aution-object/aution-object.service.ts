@@ -12,6 +12,7 @@ export class AutionObjectService {
     }
 
     async createAuctionObject(createAuctionObjectDto: CreateAuctionObjectDto) {
+        console.log("my object", createAuctionObjectDto)
         try {
             return await this.auctionObjectRepository.save(createAuctionObjectDto);
         } catch (error) {
@@ -47,13 +48,26 @@ export class AutionObjectService {
         }
     }
 
-    async updateAuctionObject(id: number, updateAuctionObject: updateAuctionObjectDto) {
-        const updateCategory = await this.auctionObjectRepository.preload({ id, ...updateAuctionObject })
-        if (!updateCategory) {
-            throw new NotFoundException('Catgory id ' + id + ' not exist in databse')
-        }
+    async updateOrCreateAuctionObject(id: number, updateAuctionObject: updateAuctionObjectDto) {
+        let auctionObject = await this.auctionObjectRepository.findOne({
+            where: { object: id }
+        })
+        auctionObject.auction_date = updateAuctionObject.auction_date;
+        auctionObject.auction_price = updateAuctionObject.auction_price;
+        auctionObject.user = updateAuctionObject.user;
+        auctionObject.object = updateAuctionObject.object;
 
-        return await this.auctionObjectRepository.save(updateCategory);
+        if (!auctionObject) {
+            try {
+                await this.auctionObjectRepository.save(
+                    { ...updateAuctionObject }
+                )
+                return;
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        return await this.auctionObjectRepository.save(auctionObject);
     }
 
 }

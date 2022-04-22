@@ -18,7 +18,7 @@ dotenv.config();
         }),
         JwtModule.register({
             secret: 'SECRET', signOptions: {
-                expiresIn: '99999',
+                expiresIn: '999999999',
             },
         }),
     ],
