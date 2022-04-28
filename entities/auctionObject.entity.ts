@@ -12,6 +12,8 @@ export class AuctionObjectEntity {
     auction_price: number;
     @Column()
     auction_date: Date;
+    @Column({ type: "timestamp", default: () => "CURRENT_TIMESTAMP" })
+    end_date: Date;
 
     @ManyToOne(() => ObjectEntity, object => object.auctionObjects)
     object: ObjectEntity;

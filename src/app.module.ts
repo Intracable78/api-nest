@@ -9,6 +9,7 @@ import { ObjectModule } from './object/object.module';
 import { AutionObjectModule } from './aution-object/aution-object.module';
 import { CategoryModule } from './category/category.module';
 import { AuthModule } from './auth/auth.module';
+import { ObjectSoldModule } from './object_sold/object_sold.module';
 @Module({
   imports: [
     TypeOrmModule.forRoot({
@@ -26,7 +27,9 @@ import { AuthModule } from './auth/auth.module';
     CategoryModule,
     ObjectModule,
     AutionObjectModule,
-    AuthModule,],
+    AuthModule,
+    ObjectSoldModule
+  ],
   controllers: [AppController,],
   providers: [AppService],
 })

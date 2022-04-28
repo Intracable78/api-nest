@@ -2,12 +2,15 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@n
 import { AuthGuard } from '@nestjs/passport';
 import { CreateObjectDto } from 'dto/createObject.dto';
 import { UpdateObjectDto } from 'dto/updateObject.dto';
+
 import { ObjectService } from './object.service';
 
 @Controller('api/object')
 export class ObjectController {
 
-    constructor(private readonly objectService: ObjectService) {
+    constructor(
+        private readonly objectService: ObjectService
+    ) {
 
     }
 

@@ -18,6 +18,10 @@ export class updateAuctionObjectDto {
     @IsDate()
     auction_date: Date;
 
+    @IsNotEmpty()
+    @IsDate()
+    end_date: Date;
+
 
 
 

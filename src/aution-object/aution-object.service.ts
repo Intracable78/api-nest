@@ -33,6 +33,7 @@ export class AutionObjectService {
         }
     }
 
+
     async getAllAuctionObject() {
         try {
             const allAuctionObject = await this.auctionObjectRepository.find({
@@ -52,10 +53,13 @@ export class AutionObjectService {
         let auctionObject = await this.auctionObjectRepository.findOne({
             where: { object: id }
         })
+
+        console.log(updateAuctionObject)
         auctionObject.auction_date = updateAuctionObject.auction_date;
         auctionObject.auction_price = updateAuctionObject.auction_price;
         auctionObject.user = updateAuctionObject.user;
         auctionObject.object = updateAuctionObject.object;
+        auctionObject.end_date = updateAuctionObject.object.dateEnd;
 
         if (!auctionObject) {
             try {

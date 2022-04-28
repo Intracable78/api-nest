@@ -5,10 +5,13 @@ import { UpdateObjectDto } from 'dto/updateObject.dto';
 import { ObjectEntity } from 'entities/object.entity';
 import { UserEntity } from 'entities/user.entity';
 import { LessThan, MoreThan, Repository } from 'typeorm';
+import { AuctionObjectEntity } from '../../entities/auctionObject.entity';
 
 @Injectable()
 export class ObjectService {
-    constructor(@InjectRepository(ObjectEntity) private readonly objectRepository: Repository<ObjectEntity>) {
+    constructor(
+        @InjectRepository(ObjectEntity) private readonly objectRepository: Repository<ObjectEntity>
+    ) {
 
     }
 
@@ -19,6 +22,7 @@ export class ObjectService {
     async getObject() {
         return await this.objectRepository.find({
             relations: ['auctionObjects'],
+            where: { dateEnd: MoreThan(new Date()) },
             order: {
                 id: 'DESC'
             }
@@ -43,7 +47,6 @@ export class ObjectService {
             }
         );
     }
-
     async updateObject(id: number, updateObjectDto: UpdateObjectDto): Promise<ObjectEntity> {
         const updatedObject = await this.objectRepository.preload({
             id,
@@ -60,6 +63,7 @@ export class ObjectService {
     async deleteObjectById(id: number) {
         return await this.objectRepository.delete(id);
     }
+
 
 
 }
