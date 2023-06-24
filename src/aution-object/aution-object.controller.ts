@@ -29,6 +29,7 @@ export class AutionObjectController {
     @Patch(':id')
     @UseGuards(AuthGuard('jwt'))
     async updateAuctionObject(@Param('id') id: number, @Body() updateAuctionPrice: updateAuctionObjectDto) {
+
         return await this.auctionObjectService.updateOrCreateAuctionObject(+id, updateAuctionPrice);
     }
 

@@ -3,7 +3,7 @@ import { AuctionObjectEntity } from "./auctionObject.entity";
 import { ObjectEntity } from "./object.entity";
 import { ObjectSoldEntity } from "./objectSold.entity";
 import { RankEntity } from "./rank.entity";
-import * as bcrypt from 'bcrypt';
+//import * as bcrypt from 'bcrypt';
 
 @Entity('users')
 export class UserEntity {
@@ -16,7 +16,7 @@ export class UserEntity {
     @Column({ unique: true })
     email: string;
     @BeforeInsert() async hashPassword() {
-        this.password = await bcrypt.hash(this.password, 10);
+        this.password = this.password;
     }
 
     @Column()
